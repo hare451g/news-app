@@ -22,6 +22,7 @@ const Image = styled.img`
   width: 120px;
   height: 120px;
   border-radius: 1rem;
+  width: 25%;
 `;
 
 const PublishedAt = styled.span`
