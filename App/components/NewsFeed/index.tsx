@@ -6,8 +6,11 @@ import useFetchNews from '../../hooks/useFetchNews';
 
 import { Title } from './styled';
 
-const NewsFeed: React.FC<INewsFeed> = () => {
-  const { loading, error, news, page, fetchNews, setPage } = useFetchNews();
+const NewsFeed: React.FC<INewsFeed> = props => {
+  const { loading, error, news, page, fetchNews, setPage } = useFetchNews({
+    category: props.category,
+    pageSize: props.pageSize
+  });
 
   useEffect(() => {
     fetchNews();
@@ -18,7 +21,7 @@ const NewsFeed: React.FC<INewsFeed> = () => {
   };
 
   if (loading) {
-    return <div>Loading News . . . </div>;
+    return <div>Loading {props.category} . . . </div>;
   }
 
   if (error) {
@@ -29,7 +32,7 @@ const NewsFeed: React.FC<INewsFeed> = () => {
     const { articles, totalResults } = news;
     return (
       <>
-        <Title>Top Headlines</Title>
+        <Title>Top {props.category}</Title>
         {articles.map(article => (
           <News {...article} />
         ))}
