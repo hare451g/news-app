@@ -1,34 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import { INews } from './interfaces';
+import axios from 'axios';
+
+import News from 'components/News';
+
+import INews from 'interfaces/INews';
+import INewsFeed from 'interfaces/INewsFeed';
+import INewsRequest from 'interfaces/INewsRequest';
+
+import { Title } from './styled';
+
 import {
   INITIAL_NEWS_STATE,
   NEWS_API_ENDPOINT,
   NEWS_API_KEY
 } from './constants';
 
-const NewsFeed: React.SFC<{}> = () => {
+const NewsFeed: React.FC<INewsFeed> = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [news, setNews] = useState<INews>(INITIAL_NEWS_STATE);
   const [page, setPage] = useState<number>(1);
 
-  const fetchNews = async (url: string) => {
+  const fetchNews = async (url: string, params: INewsRequest) => {
     setLoading(true);
     setError(false);
+
     try {
-      const response = await fetch(url);
-      const json: INews = await response.json();
+      const response = await axios.get(url, { params });
+      const data: INews = response.data;
+
+      if (data.status !== 'ok') {
+        throw new Error('Something went wrong . . .');
+      }
 
       setNews(current => ({
         ...current,
-        status: json.status,
-        articles: [...current.articles, ...json.articles],
-        totalResults: json.totalResults
+        status: data.status,
+        articles: [...current.articles, ...data.articles],
+        totalResults: data.totalResults
       }));
-
-      if (json.status !== 'ok') {
-        throw new Error('Something went wrong . . .');
-      }
     } catch (error) {
       setError(true);
     }
@@ -36,9 +46,9 @@ const NewsFeed: React.SFC<{}> = () => {
   };
 
   useEffect(() => {
-    fetchNews(
-      `${NEWS_API_ENDPOINT}/v2/top-headlines?country=us&apiKey=${NEWS_API_KEY}&page=${page}`
-    );
+    const url = `${NEWS_API_ENDPOINT}/v2/top-headlines`;
+    const params = { country: 'us', apiKey: NEWS_API_KEY, page: page };
+    fetchNews(url, params);
   }, [page]);
 
   const handleLoadMore = () => {
@@ -57,18 +67,10 @@ const NewsFeed: React.SFC<{}> = () => {
     const { articles, totalResults } = news;
     return (
       <>
-        <ol>
-          {articles.map(article => (
-            <li>
-              <div>
-                <p>{article.title}</p>
-                <p>
-                  {article.author || 'anon'} | {article.publishedAt}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
+        <Title>Top Headlines</Title>
+        {articles.map(article => (
+          <News {...article} />
+        ))}
         {articles.length < totalResults && (
           <button onClick={handleLoadMore}>Load More</button>
         )}
