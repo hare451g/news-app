@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import News from 'components/News';
 import INews from 'interfaces/INews';
+
 import {
   INITIAL_NEWS_STATE,
   NEWS_API_ENDPOINT,
   NEWS_API_KEY
 } from './constants';
 
-const NewsFeed: React.SFC<{}> = () => {
+const NewsFeed: React.FC<{}> = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [news, setNews] = useState<INews>(INITIAL_NEWS_STATE);
@@ -57,18 +59,11 @@ const NewsFeed: React.SFC<{}> = () => {
     const { articles, totalResults } = news;
     return (
       <>
-        <ol>
-          {articles.map(article => (
-            <li>
-              <div>
-                <p>{article.title}</p>
-                <p>
-                  {article.author || 'anon'} | {article.publishedAt}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
+        {articles.map(article => (
+          <div>
+            <News {...article} />
+          </div>
+        ))}
         {articles.length < totalResults && (
           <button onClick={handleLoadMore}>Load More</button>
         )}
