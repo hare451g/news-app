@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import INewsRequest from '../interfaces/INewsRequest';
 import INews from '../interfaces/INews';
+import INewsFeed from '../interfaces/INewsFeed';
+
 import {
   INITIAL_NEWS_STATE,
   NEWS_API_ENDPOINT,
@@ -11,7 +13,7 @@ import {
 
 import IUseFetchNews from '../interfaces/IUseFetchNews';
 
-function useFetchNews(): IUseFetchNews {
+function useFetchNews(args: INewsFeed): IUseFetchNews {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [news, setNews] = useState<INews>(INITIAL_NEWS_STATE);
@@ -26,9 +28,10 @@ function useFetchNews(): IUseFetchNews {
 
       const params: INewsRequest = {
         page,
-        pageSize: 20,
         apiKey: NEWS_API_KEY,
-        country: 'us'
+        country: 'us',
+        pageSize: args.pageSize,
+        category: args.category
       };
 
       const response = await axios.get(url, { params });
