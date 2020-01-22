@@ -9,14 +9,7 @@ import {
   NEWS_API_KEY
 } from '../constants/request';
 
-interface IUseFetchNews {
-  loading: boolean;
-  error: boolean;
-  news: INews;
-  page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-  fetchNews: () => Promise<void>;
-}
+import IUseFetchNews from '../interfaces/IUseFetchNews';
 
 function useFetchNews(): IUseFetchNews {
   const [loading, setLoading] = useState<boolean>(false);
