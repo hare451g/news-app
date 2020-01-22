@@ -5,6 +5,7 @@
     "jsx": "react",
     "moduleResolution": "node",
     "baseUrl": "./App",
+    "allowSyntheticDefaultImports": true,
     "lib": ["dom", "es5", "es6"]
   },
   "include": ["App/**/*.ts", "App/**/*.d.ts"]

@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-import Hello from 'components/Hello';
+import NewsFeed from 'components/NewsFeed';
 
 const Application: React.SFC<{}> = props => {
   return (
     <>
-      <Hello name='test2' />
+      <NewsFeed />
     </>
   );
 };
