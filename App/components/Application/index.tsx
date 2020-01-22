@@ -1,8 +1,8 @@
 import React from 'react';
 
-import NewsFeed from 'components/NewsFeed';
+import NewsFeed from '../../components/NewsFeed';
 
-const Application: React.SFC<{}> = props => {
+const Application: React.FC<{}> = props => {
   return (
     <>
       <NewsFeed />

@@ -1,4 +1,4 @@
-import IArticles from 'interfaces/IArticles';
+import IArticles from '../interfaces/IArticles';
 
 interface INews {
   status: string;

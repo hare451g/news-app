@@ -1,4 +1,4 @@
-import IArticleSource from 'interfaces/IArticleSource';
+import IArticleSource from '../interfaces/IArticleSource';
 
 interface IArticles {
   author: string;
