@@ -1,0 +1,27 @@
+{
+  "name": "react-ts-parcel",
+  "version": "0.0.1",
+  "description": "React with TypeScript and Parcel Template",
+  "author": "Hendra Sadewa",
+  "license": "MIT",
+  "moduleRoots": "App",
+  "alias": {
+    "App": "./App",
+    "components": "./App/components/",
+    "public": "./App/public/"
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.17",
+    "@types/react-dom": "^16.9.4",
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^3.7.4"
+  },
+  "scripts": {
+    "dev": "./node_modules/.bin/parcel App/public/index.html --out-dir build/debug",
+    "build": "./node_modules/.bin/parcel build App/public/index.html --out-dir build/release --public-url ./"
+  }
+}
