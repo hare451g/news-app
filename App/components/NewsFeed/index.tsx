@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import News from 'components/News';
+import News from '../../components/News';
 
-import INews from 'interfaces/INews';
-import INewsFeed from 'interfaces/INewsFeed';
-import INewsRequest from 'interfaces/INewsRequest';
+import INews from '../../interfaces/INews';
+import INewsFeed from '../../interfaces/INewsFeed';
+import INewsRequest from '../../interfaces/INewsRequest';
 
 import { Title } from './styled';
 

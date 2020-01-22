@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
-import IArticles from 'interfaces/IArticles';
+import IArticles from '../../interfaces/IArticles';
 import { Container, Title, Image, PublishedAt, Content } from './styled';
 
 const News: React.FC<IArticles> = props => {
