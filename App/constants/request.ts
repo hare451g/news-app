@@ -1,4 +1,4 @@
-import INews from '../../interfaces/INews';
+import INews from '../interfaces/INews';
 
 const INITIAL_NEWS_STATE: INews = {
   status: '',
