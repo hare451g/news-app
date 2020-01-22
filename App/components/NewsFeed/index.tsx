@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { INews } from './interfaces';
+import INews from 'interfaces/INews';
 import {
   INITIAL_NEWS_STATE,
   NEWS_API_ENDPOINT,
