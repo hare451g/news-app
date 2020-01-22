@@ -11,12 +11,14 @@
     "public": "./App/public/"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "moment": "^2.24.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "styled-components": "^5.0.0"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/moment": "^2.13.0",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
