@@ -4,7 +4,7 @@ interface INewsRequest {
   sources?: string;
   pageSize?: number;
   page?: number;
-  apiKey: string;
+  apiKey?: string;
 }
 
 export default INewsRequest;
