@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import News from 'components/News';
 import INews from 'interfaces/INews';
 
+import { Title } from './styled';
+
 import {
   INITIAL_NEWS_STATE,
   NEWS_API_ENDPOINT,
@@ -59,10 +61,9 @@ const NewsFeed: React.FC<{}> = () => {
     const { articles, totalResults } = news;
     return (
       <>
+        <Title>Top Headlines</Title>
         {articles.map(article => (
-          <div>
-            <News {...article} />
-          </div>
+          <News {...article} />
         ))}
         {articles.length < totalResults && (
           <button onClick={handleLoadMore}>Load More</button>
