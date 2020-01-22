@@ -1,54 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 
 import News from '../../components/News';
-
-import INews from '../../interfaces/INews';
 import INewsFeed from '../../interfaces/INewsFeed';
-import INewsRequest from '../../interfaces/INewsRequest';
+import useFetchNews from '../../hooks/useFetchNews';
 
 import { Title } from './styled';
 
-import {
-  INITIAL_NEWS_STATE,
-  NEWS_API_ENDPOINT,
-  NEWS_API_KEY
-} from './constants';
-
-const NewsFeed: React.FC<INewsFeed> = () => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
-  const [news, setNews] = useState<INews>(INITIAL_NEWS_STATE);
-  const [page, setPage] = useState<number>(1);
-
-  const fetchNews = async (url: string, params: INewsRequest) => {
-    setLoading(true);
-    setError(false);
-
-    try {
-      const response = await axios.get(url, { params });
-      const data: INews = response.data;
-
-      if (data.status !== 'ok') {
-        throw new Error('Something went wrong . . .');
-      }
-
-      setNews(current => ({
-        ...current,
-        status: data.status,
-        articles: [...current.articles, ...data.articles],
-        totalResults: data.totalResults
-      }));
-    } catch (error) {
-      setError(true);
-    }
-    setLoading(false);
-  };
+const NewsFeed: React.FC<INewsFeed> = props => {
+  const { loading, error, news, page, fetchNews, setPage } = useFetchNews({
+    category: props.category,
+    pageSize: props.pageSize
+  });
 
   useEffect(() => {
-    const url = `${NEWS_API_ENDPOINT}/v2/top-headlines`;
-    const params = { country: 'us', apiKey: NEWS_API_KEY, page: page };
-    fetchNews(url, params);
+    fetchNews();
   }, [page]);
 
   const handleLoadMore = () => {
@@ -56,7 +21,7 @@ const NewsFeed: React.FC<INewsFeed> = () => {
   };
 
   if (loading) {
-    return <div>Loading News . . . </div>;
+    return <div>Loading {props.category} . . . </div>;
   }
 
   if (error) {
@@ -67,7 +32,7 @@ const NewsFeed: React.FC<INewsFeed> = () => {
     const { articles, totalResults } = news;
     return (
       <>
-        <Title>Top Headlines</Title>
+        <Title>Top {props.category}</Title>
         {articles.map(article => (
           <News {...article} />
         ))}
