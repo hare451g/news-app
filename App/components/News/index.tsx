@@ -1,5 +1,7 @@
 import React from 'react';
-import IArticles from '../../interfaces/IArticles';
+import moment from 'moment';
+
+import IArticles from 'interfaces/IArticles';
 import { Container, Title, Image, PublishedAt, Content } from './styled';
 
 const News: React.FC<IArticles> = props => {
@@ -8,7 +10,9 @@ const News: React.FC<IArticles> = props => {
       <Image src={props.urlToImage} />
       <Content>
         <Title>{props.title}</Title>
-        <PublishedAt>{props.publishedAt}</PublishedAt>
+        <PublishedAt>
+          {moment(props.publishedAt).format('d MMMM Y')}
+        </PublishedAt>
       </Content>
     </Container>
   );
