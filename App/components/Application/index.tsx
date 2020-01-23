@@ -37,6 +37,10 @@ const Application: React.FC<{}> = props => {
       <NewsFeed category={NEWS_CATEGORY_SCIENCE} pageSize={5} />
       <NewsFeed category={NEWS_CATEGORY_SPORTS} pageSize={5} />
       <NewsFeed category={NEWS_CATEGORY_TECHNOLOGY} pageSize={5} />
+      <span>
+        {' '}
+        ⚡ Powered by <a href='newsapi.org'>NewsApi</a>
+      </span>
     </ArticleContext.Provider>
   );
 };
