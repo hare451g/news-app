@@ -1,9 +1,11 @@
-# React + TS + Parcel Template
+# Parcel News
 
 ---
 
-### Instructions
+This app is for experimenting PWA with ReactJs, by fetching news from [newsApi](newsapi.org) ⚡.
 
-1. Clone this repo
-2. install dependencies `yarn install` or `npm install`
-3. run `yarn run dev` or `npm run dev`
+Contains:
+
+- ReactJs
+- TypeScript
+- Parcel
