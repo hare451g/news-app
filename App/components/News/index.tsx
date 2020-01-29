@@ -17,7 +17,7 @@ const News: React.FC<IArticles> = props => {
       <Content>
         <Title>{props.title}</Title>
         <PublishedAt>
-          {moment(props.publishedAt).format('d MMMM Y')}
+          {moment(props.publishedAt).format('D MMMM Y')}
         </PublishedAt>
       </Content>
     </Container>

@@ -2,10 +2,15 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem 0;
+  padding: 0;
+  margin: 1rem 0;
+  :hover {
+    border: 1px solid #3d3d3d;
+    border-radius: 1rem;
+  }
 `;
 
 const Content = styled.div`
@@ -19,10 +24,8 @@ const Title = styled.h3`
 
 const Image = styled.img`
   object-fit: cover;
-  width: 120px;
-  height: 120px;
-  border-radius: 1rem;
-  width: 25%;
+  width: 100%;
+  border-radius: 1rem 1rem 0 0;
 `;
 
 const PublishedAt = styled.span`
